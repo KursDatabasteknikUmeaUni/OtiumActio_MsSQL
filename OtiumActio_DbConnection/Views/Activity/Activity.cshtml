@@ -1,0 +1,32 @@
+﻿@model IEnumerable<OtiumActio.ViewModels.ActivityViewModel>
+<div>
+    <table id="activities">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Beskrivning</th>
+                <th>Antal deltagande</th>
+                <th>Datum</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var list in ViewBag.ActivitiesList)
+            {
+                <tr>
+                    <td>@list.Category</td>
+                    <td>@list.Description</td>
+                    <td>@list.Participants</td>
+                    <td>@list.Date</td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <div class="container" style="text-align: center">
+        <a asp-controller="SuggestedActivity" asp-action="Index">Skapa en ny aktivitet</a>
+
+    </div>
+
+    </div>
+
