@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OtiumActio.DAL;
 using OtiumActio.Models;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,9 @@ namespace OtiumActio.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            Activity_DL adl = new Activity_DL();
+            List<Category> cats = adl.Categories.ToList();
+            return View(cats);
         }
 
         public IActionResult Privacy()

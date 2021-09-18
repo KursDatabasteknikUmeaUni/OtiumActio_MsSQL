@@ -18,10 +18,10 @@ namespace OtiumActio.Controllers
         {
             var categories = new List<SelectListItem>()
             {
-               new SelectListItem{ Text= Category.Naturvanrding.ToString(), Value = "1" },
-               new SelectListItem{ Text= Category.Idrott.ToString(), Value = "2" },
-               new SelectListItem{ Text= Category.Bio.ToString(), Value = "3" },
-               new SelectListItem{ Text= Category.Matlagning.ToString(), Value = "4" },
+               new SelectListItem{ Text= Enums.Category.Naturvanrding.ToString(), Value = "1" },
+               new SelectListItem{ Text= Enums.Category.Idrott.ToString(), Value = "2" },
+               new SelectListItem{ Text= Enums.Category.Bio.ToString(), Value = "3" },
+               new SelectListItem{ Text= Enums.Category.Matlagning.ToString(), Value = "4" },
                };
             ViewData["SelectableCategories"] = categories;
             return View("SuggestedActivity");
@@ -32,7 +32,7 @@ namespace OtiumActio.Controllers
             model.Categories.ToString().Trim('"');
             try
             {
-                ListOfAllActivities.Add(new ActivityViewModel { Id = 1, Category = (Enum.GetName(typeof(Category), model.Categories)), Description = model.Description, Participants = model.Participants, Date = model.Date });
+               // ListOfAllActivities.Add(new ActivityViewModel { Id = 1, Category = (Enum.GetName(typeof(Category), model.Categories)), Description = model.Description, Participants = model.Participants, Date = model.Date });
                 TempData["Success"] = "Tack! Aktiviteten skapades.";
             }
             catch (Exception)

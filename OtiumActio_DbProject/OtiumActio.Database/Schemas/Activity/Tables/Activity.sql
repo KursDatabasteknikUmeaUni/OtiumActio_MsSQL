@@ -1,11 +1,17 @@
-﻿--CREATE SCHEMA Activity;
+﻿CREATE TABLE [Activity].[Tbl_Activity] (
+    [Ac_Id] INT IDENTITY(1,1) NOT NULL,
+    --[Ac_CategoryId] int FOREIGN KEY REFERENCES Activity.Tbl_ActivityCategory(Acat_CategoryId),  
+    [Ac_Description] VARCHAR(50),
+    [Ac_Participants] TINYINT,
+    [Ac_Date] DATETIME
 
-CREATE TABLE Activity.Activity (
-    Id int IDENTITY(1,1) Not null,
-    CategoryId int FOREIGN KEY REFERENCES Activity.ActivityCategory(CategoryId),
-    Description varchar(50),
-    Participants tinyint,
-    Date datetime
-
-    CONSTRAINT Activity_pk PRIMARY KEY  (Id)
+    CONSTRAINT [PK_Tbl_Activity] PRIMARY KEY ([Ac_Id] ASC)
 );
+
+
+--Insert into Activity.Activity (Description, Participants, Date)
+--Values(
+--'Detaljer kommer senare',
+--8,
+--'2021-09-23 11:00:00'
+--);

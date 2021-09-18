@@ -63,11 +63,14 @@
     <Folder Include="Schemas\Activity\Scripts" />
     <Folder Include="Schemas\User\Tables" />
     <Folder Include="Schemas\User\Scripts" />
+    <Folder Include="Schemas\Activity\StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Schemas\Activity\Tables\Activity.sql" />
     <None Include="Schemas\Activity\Tables\Category.sql" />
     <None Include="Schemas\Activity\Tables\ActivityCategory.sql" />
     <None Include="Schemas\User\Tables\Participant.sql" />
+    <None Include="Schemas\Activity\Scripts\Category.sql" />
+    <None Include="Schemas\Activity\StoredProcedures\GetCategories.sql" />
   </ItemGroup>
 </Project>

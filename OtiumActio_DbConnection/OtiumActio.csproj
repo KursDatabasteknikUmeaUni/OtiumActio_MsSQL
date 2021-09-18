@@ -24,4 +24,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OtiumActio.DAL\OtiumActio.DAL.csproj" />
+    <ProjectReference Include="..\OtiumActio.Models\OtiumActio.Models.csproj" />
+  </ItemGroup>
+
 </Project>

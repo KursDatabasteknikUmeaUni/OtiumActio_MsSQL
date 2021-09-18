@@ -17,7 +17,7 @@ namespace OtiumActio.Controllers
                 foreach (var list in ListOfAllActivities)
                 {
                 viewModel.Add(new ActivityViewModel { 
-                    Category = list.Category, 
+                    //Category = Category, 
                     Description = list.Description, 
                     Participants = list.Participants, 
                     Date = list.Date });

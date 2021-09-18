@@ -10,6 +10,7 @@ namespace OtiumActio.Enums
         Naturvanrding = 1,
         Idrott = 2,
         Bio = 3,
-        Matlagning = 4
+        Matlagning = 4,
+        Föreläsning = 5
     }
 }

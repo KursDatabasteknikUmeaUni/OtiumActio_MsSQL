@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using OtiumActio.Enums;
 using OtiumActio.Models;
+using Category = OtiumActio.Enums.Category;
 
 namespace OtiumActio.Helpers
 {
@@ -11,15 +12,15 @@ namespace OtiumActio.Helpers
         {
             list = new List<Activity>()
             {
-                new Activity { Category = Category.Naturvanrding.ToString(), 
+                new Activity { Category = (long)Category.Naturvanrding, 
                     Description = "Göteborg. Träffpunkt: Ruddalen entre", 
                     Participants = 3, 
                     Date = FormatDateTime(7) },
-                new Activity { Category = Category.Idrott.ToString(), 
+                new Activity { Category = (long)Category.Idrott, 
                     Description = "Borås. Träffpunkt: Central station", 
                     Participants = 8, 
                     Date = FormatDateTime(10) },
-                new Activity { Category = Category.Bio.ToString(), 
+                new Activity { Category = (long)Category.Bio, 
                     Description = "Göteborg. Träffpunkt: HagaBion.", 
                     Participants = 2, 
                     Date = FormatDateTime(3) },

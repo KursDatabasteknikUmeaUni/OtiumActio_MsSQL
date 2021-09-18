@@ -25,7 +25,7 @@ namespace OtiumActio
             services.AddControllersWithViews();
 
             services.AddDbContext<ActivityContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("OtiumActioDb")));
+                options.UseSqlServer(Configuration.GetConnectionString("OtiumActio")));
 
             services.AddSession(options => {
                 options.Cookie.Name = ".List.Session";

@@ -1,13 +1,8 @@
-﻿CREATE TABLE Activity.ActivityCategory (
-    Id int IDENTITY(1,1) Not null,
-    CategoryId int Unique FOREIGN KEY REFERENCES Activity.Category(Id),
-    ActivityId int Not null
-    --int FOREIGN KEY REFERENCES Activity(Id)
+﻿CREATE TABLE [Activity].[Tbl_ActivityCategory] (
+    [Acat_Id] INT IDENTITY(1,1) NOT NULL,
+    [Acat_CategoryId] INT FOREIGN KEY REFERENCES Activity.Tbl_Category(Cat_Id),
+    [Acat_ActivityId] INT FOREIGN KEY REFERENCES Activity.Tbl_Activity(Ac_Id)
 
-    CONSTRAINT ActivityCategory_pk PRIMARY KEY  (Id)
+    CONSTRAINT [PK_Tbl_ActivityCategory] PRIMARY KEY  ([Acat_Id] ASC)
 );
 
-
---Added foreign key to ActivityId, after creating Activity table, by 
---Alter table Activity.ActivityCategory
---Add FOREIGN KEY (ActivityId) REFERENCES Activity.Activity(Id)
