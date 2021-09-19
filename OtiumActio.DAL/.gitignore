@@ -10,6 +10,8 @@
 *.userosscache
 *.sln.docstates
 ConnectionStringSetting.cs
+bin
+obj 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
