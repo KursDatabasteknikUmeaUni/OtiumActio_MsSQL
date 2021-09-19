@@ -1,8 +1,9 @@
 ﻿Create procedure GetAllCategories   
-@CategoryId Int = NUll  
+@CatId Int = NUll  
 as  
 Begin  
- Select C.Id,   C.Name  
- From Activity.Category C  
- Where C.Id = ISNULL(@CategoryId, Id)  
+ Select C.Cat_Id,   C.Cat_Name  
+ From [Activity].[Tbl_Category] C  
 End 
+
+--exec GetAllCategories

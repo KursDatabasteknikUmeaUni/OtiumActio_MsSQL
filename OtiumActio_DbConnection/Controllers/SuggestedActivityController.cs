@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OtiumActio.Enums;
-using OtiumActio.Helpers;
+using OtiumActio.DAL;
 using OtiumActio.Models;
 using OtiumActio.ViewModels;
 using System;
@@ -29,18 +27,31 @@ namespace OtiumActio.Controllers
         [HttpPost]
         public IActionResult AddNewActivity(ActivityViewModel model)
         {
-            model.Categories.ToString().Trim('"');
-            try
+            //model.Categories.ToString().Trim('"');
+            //try
+            //{
+            //   // ListOfAllActivities.Add(new ActivityViewModel { Id = 1, Category = (Enum.GetName(typeof(Category), model.Categories)), Description = model.Description, Participants = model.Participants, Date = model.Date });
+            //    TempData["Success"] = "Tack! Aktiviteten skapades.";
+            //}
+            //catch (Exception)
+            //{
+            //    //TempData["Success"] = new Exception();
+            //}
+            //return RedirectToAction("Index");
+            Activity_DL adl = new Activity_DL();
+            //var catId = (Enum.GetName(typeof(Enums.Category), model.Categories));
+           // var catId = ()
+            var activity = new Activity
             {
-               // ListOfAllActivities.Add(new ActivityViewModel { Id = 1, Category = (Enum.GetName(typeof(Category), model.Categories)), Description = model.Description, Participants = model.Participants, Date = model.Date });
-                TempData["Success"] = "Tack! Aktiviteten skapades.";
-            }
-            catch (Exception)
-            {
-                //TempData["Success"] = new Exception();
-            }
-            return RedirectToAction("Index");
+                Id = 6,
+                Category = (int)model.Categories, 
+                Description = model.Description,
+                Participants = model.Participants,
+                Date = model.Date
 
+            };
+            adl.AddActivity(activity);
+            return View("Index");
         }
         [HttpGet]
         public IActionResult GetAllActivities()

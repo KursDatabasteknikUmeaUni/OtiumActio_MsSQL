@@ -10,8 +10,8 @@ namespace OtiumActio.ViewModels
 {
     public class ActivityViewModel 
     {
-        public long Id { get; set; }
-        public string Category { get; set; }
+        public int Id { get; set; }
+        public int Category { get; set; }
         public Category Categories { get; set; }
         [Required(AllowEmptyStrings= false, ErrorMessage = "Skriv in en kort beskrivning av aktiviteten...")]
         public string Description { get; set; }

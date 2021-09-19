@@ -72,5 +72,7 @@
     <None Include="Schemas\User\Tables\Participant.sql" />
     <None Include="Schemas\Activity\Scripts\Category.sql" />
     <None Include="Schemas\Activity\StoredProcedures\GetCategories.sql" />
+    <None Include="Schemas\Activity\StoredProcedures\AddActivityUpdateActCat.sql" />
+    <None Include="Schemas\Activity\StoredProcedures\UpdateActCat.sql" />
   </ItemGroup>
 </Project>
