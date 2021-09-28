@@ -8,10 +8,3 @@
     CONSTRAINT [PK_Tbl_Activity] PRIMARY KEY ([Ac_Id] ASC)
 );
 
-
---Insert into Activity.Activity (Description, Participants, Date)
---Values(
---'Detaljer kommer senare',
---8,
---'2021-09-23 11:00:00'
---);

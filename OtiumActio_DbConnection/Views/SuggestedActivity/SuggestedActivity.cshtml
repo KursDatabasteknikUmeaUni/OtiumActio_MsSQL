@@ -1,30 +1,31 @@
-﻿@model OtiumActio.ViewModels.ActivityViewModel
-<div>
+﻿@model OtiumActio.Models.ActivityViewModel
+<fieldset>
     @using (Html.BeginForm("AddNewActivity", "SuggestedActivity", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div>
+        <fieldset>
+            @*<div>
                 @Html.HiddenFor(model => model.Id)
-            </div>
+            </div>*@
             @Html.LabelFor(model => model.Categories, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Categories", (IEnumerable
+            <div class="col-md-10 editor-label">
+                @Html.DropDownList("Category", (IEnumerable
             <SelectListItem>)ViewData["SelectableCategories"])
+                @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
+
             </div>
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 editor-label">
                 @Html.EditorFor(model => model.Description)
                 @Html.ValidationMessageFor(model => model.Description)
             </div>
             @Html.LabelFor(model => model.Participants, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 editor-label">
                 @Html.EditorFor(model => model.Participants)
-                @*@Html.ValidationMessageFor(model => model.Participants)*@
                 @Html.ValidationMessageFor(model => model.Participants, "", new { @class = "text-danger" })
             </div>
             @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 editor-label">
                 @Html.EditorFor(model => model.Date, new { @class = "date" })
             </div>
 
@@ -34,7 +35,7 @@
             </div>
 
 
-        </div>
+        </fieldset>
 
     }
     <div id="snackbar">
@@ -42,14 +43,16 @@
     </div>
     <div id="displayAllActivities"></div>
 
-</div>
-@section scripts
+    </div>
+    @section scripts
     {
-    <script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script>
         $(document).ready(function () {
 
             var success = @((TempData["Success"] != null).ToString().ToLower());
-            if (success == true) {
+            if (success == true)
+            {
                 snackbarFunction();
                 $('#displayAllActivities').load('@Url.Action("GetAllActivities", "SuggestedActivity")');
             }
@@ -64,7 +67,7 @@
             }, 20000);
         }
 
-    </script>
-}
+        </script>
+    }
 
 

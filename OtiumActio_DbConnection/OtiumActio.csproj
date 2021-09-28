@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Enums\Category.cs" />
     <Compile Remove="Models\Activity.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Enums\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 

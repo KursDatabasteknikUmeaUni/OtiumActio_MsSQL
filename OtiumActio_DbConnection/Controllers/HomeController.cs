@@ -21,7 +21,7 @@ namespace OtiumActio.Controllers
 
         public IActionResult Index()
         {
-            Activity_DL adl = new Activity_DL();
+            DataAccessLayer adl = new DataAccessLayer();
             List<Category> cats = adl.Categories.ToList();
             return View(cats);
         }

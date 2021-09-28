@@ -1,44 +1,67 @@
 ﻿CREATE PROCEDURE AddActivityUpdateActCat
 (   
-@id int,
+--@id int,
+    @category int,
+    @description VARCHAR(50) ,
+    @participants TINYINT,
+    @date DATETIME,
+    @created DATETIME
+)
+AS  
+BEGIN
+--SET IDENTITY_INSERT [Activity].[Tbl_Activity]  ON
+INSERT INTO [Activity].[Tbl_Activity] 
+(
+--Ac_Id,
+Ac_CategoryId,Ac_Description,Ac_Participants,Ac_Date, Ac_Created)  
+VALUES
+(
+--@id,
+@category,@description,@participants,@date)
+--SET IDENTITY_INSERT [Activity].[Tbl_Activity]  OFF
+
+END
+----EXEC UpdateActivityCategoryTable
+
+
+
+------------------------------------------------------------------
+/*****Another version that tries to create a temp data with parameters, result is random ids with duplicate rows of into and null activity category table
+
+|
+|
+|
+
+
+
+USE [OtiumActio]
+GO
+/****** Object:  StoredProcedure [dbo].[AddActivityUpdateActCat]    Script Date: 2021-09-25 13:26:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[AddActivityUpdateActCat]
     @category int,
     @description VARCHAR(50) ,
     @participants TINYINT,
     @date DATETIME
-)
 AS  
+DECLARE @ActivityCategoryTemp TABLE (
+    [Acat_CategoryId]          INT,
+    [Acat_ActivityId]       INT
+	--,
+ --   [Acat_Created]       INT
+)
+Declare @created DATETIME;
+Declare @activity int;
 BEGIN
-SET IDENTITY_INSERT [Activity].[Tbl_Activity]  ON
-INSERT INTO [Activity].[Tbl_Activity] 
-(
-Ac_Id,
-Ac_CategoryId,Ac_Description,Ac_Participants,Ac_Date)  
-VALUES
-(
-@id,
-@category,@description,@participants,@date)
-SET IDENTITY_INSERT [Activity].[Tbl_Activity]  OFF
+	UPDATE [Activity].[Tbl_Activity]
+	--SET @created = 
 
---	BEGIN TRY
---		BEGIN TRANSACTION
---		SAVE TRANSACTION UpdateActivityCategory;
---		SELECT @@TRANCOUNT AS [TranCount];
---		UPDATE ActivityCategory
---		SET ActivityCategory.Acat_ActivityId = @id
---		FROM [Activity].[Tbl_ActivityCategory] ActivityCategory
---		INNER JOIN Tbl_Activity Activity 
---		ON  ActivityCategory.Acat_CategoryId = @category
---		COMMIT TRANSACTION 
---    END TRY
---    BEGIN CATCH
---        SELECT
---        ERROR_NUMBER() AS ErrorNumber,
---        ERROR_STATE() AS ErrorState,
---        ERROR_SEVERITY() AS ErrorSeverity,
---        ERROR_PROCEDURE() AS ErrorProcedure,
---        ERROR_LINE() AS ErrorLine,
---        ERROR_MESSAGE() AS ErrorMessage;
---    ROLLBACK TRANSACTION UpdateActivityCategory
---        END CATCH
+	SET Ac_CategoryId = @category, Ac_Description = @description, Ac_Date = @date, Ac_Participants = @participants
+	OUTPUT inserted.Ac_Id, inserted.Ac_CategoryId
+	INTO @ActivityCategoryTemp
+	Insert INTO [Activity].[Tbl_ActivityCategory](Acat_CategoryId, Acat_ActivityId)
+	Select Acat_CategoryId, Acat_ActivityId from @ActivityCategoryTemp
 END
-----EXEC UpdateActivityCategoryTable

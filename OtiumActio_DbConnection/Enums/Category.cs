@@ -11,6 +11,8 @@ namespace OtiumActio.Enums
         Idrott = 2,
         Bio = 3,
         Matlagning = 4,
-        Föreläsning = 5
+        Föreläsning = 5,
+        Musik = 6
+
     }
 }

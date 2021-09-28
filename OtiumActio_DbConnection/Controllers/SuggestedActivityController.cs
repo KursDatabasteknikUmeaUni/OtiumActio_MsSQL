@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OtiumActio.DAL;
 using OtiumActio.Models;
-using OtiumActio.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +11,22 @@ namespace OtiumActio.Controllers
     public class SuggestedActivityController : Controller
     {
         private static List<ActivityViewModel> ListOfAllActivities = new List<ActivityViewModel>();
+        //private readonly DataAccessLayer _dataAccess;
+        //public SuggestedActivityController(DataAccessLayer dataAccess)
+        //{
+        //    _dataAccess = dataAccess;
+        //}
         public IActionResult Index()
         {
-            var categories = new List<SelectListItem>()
+            DataAccessLayer adl = new DataAccessLayer();
+            var allCategories = adl.Categories.ToList();
+            List<SelectListItem> categories = new List<SelectListItem>();
+            foreach (var category in allCategories)
             {
-               new SelectListItem{ Text= Enums.Category.Naturvanrding.ToString(), Value = "1" },
-               new SelectListItem{ Text= Enums.Category.Idrott.ToString(), Value = "2" },
-               new SelectListItem{ Text= Enums.Category.Bio.ToString(), Value = "3" },
-               new SelectListItem{ Text= Enums.Category.Matlagning.ToString(), Value = "4" },
-               };
+                categories.Add(new SelectListItem { Text = category.Name.ToString(), Value = category.Id.ToString() });
+            }
             ViewData["SelectableCategories"] = categories;
+
             return View("SuggestedActivity");
         }
         [HttpPost]
@@ -38,20 +43,28 @@ namespace OtiumActio.Controllers
             //    //TempData["Success"] = new Exception();
             //}
             //return RedirectToAction("Index");
-            Activity_DL adl = new Activity_DL();
+            DataAccessLayer adl = new DataAccessLayer();
             //var catId = (Enum.GetName(typeof(Enums.Category), model.Categories));
            // var catId = ()
             var activity = new Activity
             {
-                Id = 6,
-                Category = (int)model.Categories, 
+                //Id = 6,
+                Category = (int)model.Category, 
                 Description = model.Description,
                 Participants = model.Participants,
                 Date = model.Date
 
             };
             adl.AddActivity(activity);
-            return View("Index");
+            var allCategories = adl.Categories.ToList();
+            List<SelectListItem> categories = new List<SelectListItem>();
+            foreach (var category in allCategories)
+            {
+                categories.Add(new SelectListItem { Text = category.Name.ToString(), Value = category.Id.ToString() });
+            }
+            ViewData["SelectableCategories"] = categories;
+
+            return View("SuggestedActivity");
         }
         [HttpGet]
         public IActionResult GetAllActivities()

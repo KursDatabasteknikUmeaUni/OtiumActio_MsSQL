@@ -7,7 +7,7 @@ using OtiumActio.Models;
 
 namespace OtiumActio.DAL
 {
-    public class Activity_DL
+    public class DataAccessLayer : IDataAccessLayer
     {
         public IEnumerable<Category> Categories
         {
@@ -21,6 +21,8 @@ namespace OtiumActio.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
+                    //var catName = Enum.GetNames(typeof(Category));
+                    //var catId = Enum.GetValues(typeof(Category));
                     while (rdr.Read())
                     {
                         Category category = new Category();
@@ -43,12 +45,12 @@ namespace OtiumActio.DAL
                     con.Open();
                     SqlCommand cmd = new SqlCommand("AddActivityUpdateActCat", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id", activity.Id);
+                    //cmd.Parameters.AddWithValue("@id", activity.Id);
                     cmd.Parameters.AddWithValue("@category", activity.Category);
                     cmd.Parameters.AddWithValue("@description", activity.Description);
                     cmd.Parameters.AddWithValue("@participants", activity.Participants);
                     cmd.Parameters.AddWithValue("@date", activity.Date);
-                    AddActivityCategory(activity);
+                    //AddActivityCategory(activity);
                     cmd.ExecuteNonQuery();
                     return null; // success   
                 }
@@ -62,29 +64,29 @@ namespace OtiumActio.DAL
                 }
             }
         }
-        public string AddActivityCategory(Activity activity)
-        {
-            string connectionString = GetSrting();
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("UpdateActCat", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@activity", activity.Id);
-                    cmd.Parameters.AddWithValue("@category", activity.Category);
+        //public string AddActivityCategory(Activity activity)
+        //{
+        //    string connectionString = GetSrting();
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            con.Open();
+        //            SqlCommand cmd = new SqlCommand("UpdateActCat", con);
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.AddWithValue("@activity", activity.Id);
+        //            cmd.Parameters.AddWithValue("@category", activity.Category);
 
-                    cmd.ExecuteNonQuery();
-                    return null; // success   
-                }
-                catch (Exception ex)
-                {
-                    return ex.Message; // return error message  
-                }
+        //            cmd.ExecuteNonQuery();
+        //            return null; // success   
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return ex.Message; // return error message  
+        //        }
 
-            }
-        }
-            public static string GetSrting() => ConnectionStringSetting.GetConnectionString();
+        //    }
+        //}
+        public static string GetSrting() => ConnectionStringSetting.GetConnectionString();
     }
 }
