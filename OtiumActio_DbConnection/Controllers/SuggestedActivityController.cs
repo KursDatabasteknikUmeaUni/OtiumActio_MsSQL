@@ -56,6 +56,7 @@ namespace OtiumActio.Controllers
 
             };
             adl.AddActivity(activity);
+            ModelState.Clear();
             var allCategories = adl.Categories.ToList();
             List<SelectListItem> categories = new List<SelectListItem>();
             foreach (var category in allCategories)

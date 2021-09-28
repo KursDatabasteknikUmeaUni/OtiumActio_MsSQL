@@ -1,17 +1,13 @@
 ﻿@model OtiumActio.Models.ActivityViewModel
-<fieldset>
-    @using (Html.BeginForm("AddNewActivity", "SuggestedActivity", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div>
+    @using (Html.BeginForm("AddNewActivity", "SuggestedActivity", FormMethod.Post, new { id= "addactivities", enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <fieldset>
-            @*<div>
-                @Html.HiddenFor(model => model.Id)
-            </div>*@
             @Html.LabelFor(model => model.Categories, new { @class = "control-label col-md-2" })
             <div class="col-md-10 editor-label">
                 @Html.DropDownList("Category", (IEnumerable
             <SelectListItem>)ViewData["SelectableCategories"])
-                @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
 
             </div>
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
@@ -38,35 +34,26 @@
         </fieldset>
 
     }
-    <div id="snackbar">
+    @*<div id="snackbar">
         <p>@TempData["Success"]</p>
+    </div>*@
+    <div id="displayAllActivities" style="display: none;">
+        <p>Tack för att förslå en ny aktivitet!</p>
     </div>
-    <div id="displayAllActivities"></div>
 
     </div>
     @section scripts
     {
         <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
         <script>
-        $(document).ready(function () {
+            //$(document).ready(function () {
 
-            var success = @((TempData["Success"] != null).ToString().ToLower());
-            if (success == true)
-            {
-                snackbarFunction();
-                $('#displayAllActivities').load('@Url.Action("GetAllActivities", "SuggestedActivity")');
-            }
+                $('#addactivities').submit(function () {
+                    $('#displayAllActivities').show()
+                //$(this).find(':submit').prop('disabled', 'false');
+            });
 
-        });
-        function snackbarFunction() {
-            var x = document.getElementById("snackbar");
-            x.className = "show";
-            setTimeout(function () {
-                x.className = x.className.replace("show", "");
-
-            }, 20000);
-        }
-
+            //};
         </script>
     }
 

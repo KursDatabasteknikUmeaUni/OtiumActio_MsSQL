@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OtiumActio.Models.ActivityViewModel>
+﻿@model IEnumerable<OtiumActio.Models.Activity>
 <div>
     <table id="activities">
         <thead>
@@ -10,10 +10,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var list in ViewBag.ActivitiesList)
+            @foreach (var list in Model)
             {
                 <tr>
-                    <td>@list.Category</td>
+                    <td>@list.Categories.Name</td>
                     <td>@list.Description</td>
                     <td>@list.Participants</td>
                     <td>@list.Date</td>

@@ -4,12 +4,14 @@
     @category int,
     @description VARCHAR(50) ,
     @participants TINYINT,
-    @date DATETIME,
-    @created DATETIME
+    @date DATETIME
+    --@created DATETIME
 )
-AS  
+AS 
+DECLARE @created DATETIME;
 BEGIN
 --SET IDENTITY_INSERT [Activity].[Tbl_Activity]  ON
+SET @created = GETDATE()
 INSERT INTO [Activity].[Tbl_Activity] 
 (
 --Ac_Id,
@@ -17,13 +19,10 @@ Ac_CategoryId,Ac_Description,Ac_Participants,Ac_Date, Ac_Created)
 VALUES
 (
 --@id,
-@category,@description,@participants,@date)
+@category,@description,@participants,@date, @created)
 --SET IDENTITY_INSERT [Activity].[Tbl_Activity]  OFF
 
 END
-----EXEC UpdateActivityCategoryTable
-
-
 
 ------------------------------------------------------------------
 /*****Another version that tries to create a temp data with parameters, result is random ids with duplicate rows of into and null activity category table
