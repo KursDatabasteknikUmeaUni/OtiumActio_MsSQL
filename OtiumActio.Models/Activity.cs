@@ -11,6 +11,7 @@ namespace OtiumActio.Models
         [Key]
         public int Id { get; set; }
         public int Category { get; set; }
+        public string CategoryName { get; set; }
         public Category Categories { get; set; }
         public string Description { get; set; }
         public long Participants { get; set; }

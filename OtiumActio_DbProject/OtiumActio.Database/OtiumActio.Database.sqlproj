@@ -76,6 +76,5 @@
     <None Include="Schemas\Activity\StoredProcedures\UpdateActCat.sql" />
     <None Include="Schemas\Activity\StoredProcedures\DeleteActivity.sql" />
     <None Include="Schemas\Activity\StoredProcedures\GetAllActivities.sql" />
-    <None Include="Schemas\Activity\StoredProcedures\GetCategoryName.sql" />
   </ItemGroup>
 </Project>

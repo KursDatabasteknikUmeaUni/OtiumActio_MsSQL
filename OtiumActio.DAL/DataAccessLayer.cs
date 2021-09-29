@@ -52,10 +52,7 @@ namespace OtiumActio.DAL
                         Activity activity = new Activity();
                         activity.Id = Convert.ToInt32(rdr["Ac_Id"]);
                         activity.Description = rdr["Ac_Description"].ToString();
-                        var categoryId = Convert.ToInt32(rdr["Ac_CategoryId"]);
-                        var categoryName = CategoryName(categoryId);
-                        activity.Categories.Name = categoryName;
-
+                        activity.CategoryName = rdr["CategoryName"].ToString();
                         activity.Date = (DateTime)rdr["Ac_Date"];
                         activity.Participants = Convert.ToInt32(rdr["Ac_Participants"]);
                         activities.Add(activity);
@@ -63,28 +60,6 @@ namespace OtiumActio.DAL
                 }
                 return activities;
             }
-        }
-        public string CategoryName(int catId)
-        {
-                string connectionString = GetSrting();
-            //List<Activity> activities = new List<Activity>();
-            Category category = new Category();
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    SqlCommand cmd = new SqlCommand("GetCategoryName", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                con.Open();
-                cmd.Parameters.AddWithValue("@categoryId", catId);
-
-                SqlDataReader rdr = cmd.ExecuteReader();
-                    if (rdr.Read())
-                    {
-                        category.Id = Convert.ToInt32(rdr["Cat_Id"]);
-                        category.Name = rdr["Cat_Name"].ToString();
-                    }
-                }
-                return category.Name;
         }
 
         public string AddActivity(Activity activity) //int id, int category, string description, int participant, DateTime date
