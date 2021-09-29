@@ -16,8 +16,7 @@ namespace OtiumActio.Models
         public string Description { get; set; }
         [Range(1, 50, ErrorMessage = "På grund av rådande restriktioner får antal deltagande inte överskrida 50")]
         public long Participants { get; set; }
-        //[Range(typeof(DateTime), DateTime.Now.ToString(), "31/12/2021", ErrorMessage ="")]
-        [DisplayFormat(DataFormatString = "{0:mm-dd-yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
     }
 }

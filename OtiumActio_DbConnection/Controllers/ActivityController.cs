@@ -16,5 +16,19 @@ namespace OtiumActio.Controllers
             var allActivities = adl.Activities.ToList();
             return View("Activity", allActivities);
         }
+        public IActionResult Delete(Activity activity)
+        {
+            DataAccessLayer adl = new DataAccessLayer();
+            try
+            {
+                adl.DeleteActivity(activity.Id);
+                TempData["Success"] = "Aktiviteten tas bort!";
+            }
+            catch (System.Exception)
+            {
+                ViewData["Error"] = "Oops! Försök igen senare!";
+            }
+            return PartialView("_successMessage");
+        }
     }
 }

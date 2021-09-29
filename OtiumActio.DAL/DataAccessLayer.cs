@@ -114,7 +114,7 @@ namespace OtiumActio.DAL
 
         //    }
         //}
-        public static string DeleteActivity(int id)
+        public string DeleteActivity(int id)
         {
             string connectionString = GetSrting();
             using (SqlConnection con = new SqlConnection(connectionString)) { 

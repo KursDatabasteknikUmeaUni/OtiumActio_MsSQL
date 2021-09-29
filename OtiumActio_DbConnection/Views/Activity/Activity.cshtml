@@ -12,13 +12,17 @@
         <tbody>
             @foreach (var list in Model)
             {
-                <tr>
-                    <td>@list.CategoryName</td>
-                    <td>@list.Description</td>
-                    <td>@list.Participants</td>
-                    <td>@list.Date</td>
+            <tr>
+                <td>@list.CategoryName</td>
+                <td>@list.Description</td>
+                <td>@list.Participants</td>
+                <td>@list.Date</td>
+                <td>
+                    @Html.ActionLink("Redigera", "Delete", "Activity", new { id = list.Id }) |
+                    @Html.ActionLink("Radera", "Delete", "Activity", new { id = list.Id })
+                </td>
 
-                </tr>
+            </tr>
 
             }
         </tbody>
