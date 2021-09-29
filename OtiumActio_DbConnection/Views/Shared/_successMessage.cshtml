@@ -9,18 +9,15 @@
     {
         <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading"> @ViewData["Error"].ToString()</h4>
-            <a href="#">Hemsida</a>
+            <a href="@Url.Action("Index","Activity")">Gå till aktivitetslista</a>
         </div>
     }
     @if (TempData["Success"] != null)
     {
 <div class="alert alert-success" role="alert">
     <h4 class="alert-heading"> @TempData["Success"].ToString()</h4>
-    <a href="#">Hemsida</a>
+    <a href="@Url.Action("Index","Activity")">Gå till aktivitetslista</a>
 
 </div>
     }
-    <div class="alert alert-success" role="alert">
-
-    </div>
 </div>

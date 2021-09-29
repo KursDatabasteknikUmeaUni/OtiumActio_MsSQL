@@ -28,7 +28,7 @@ namespace OtiumActio.Controllers
             {
                 ViewData["Error"] = "Oops! Försök igen senare!";
             }
-            return PartialView("_successMessage");
+            return View("_successMessage");
         }
     }
 }
