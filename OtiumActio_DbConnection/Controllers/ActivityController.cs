@@ -16,10 +16,16 @@ namespace OtiumActio.Controllers
         {
             _service = service;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
             DataAccessLayer adl = new DataAccessLayer();
             var allActivities = adl.Activities.ToList();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                return View("Activity", allActivities.Where(d=>d.Description.Contains(search)));
+
+            }
             return View("Activity", allActivities);
         }
         public IActionResult Delete(Activity activity)

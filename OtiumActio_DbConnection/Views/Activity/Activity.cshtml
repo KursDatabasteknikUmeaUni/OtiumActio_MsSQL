@@ -1,36 +1,41 @@
 ﻿@model IEnumerable<OtiumActio.Models.Activity>
 <div>
-    <table id="activities">
-        <thead>
-            <tr>
-                <th>Category</th>
-                <th>Beskrivning</th>
-                <th>Antal deltagande</th>
-                <th>Datum</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var list in Model)
-            {
-            <tr>
-                <td>@list.CategoryName</td>
-                <td>@list.Description</td>
-                <td>@list.Participants</td>
-                <td>@list.Date</td>
-                <td>
-                    @Html.ActionLink("Redigera", "Update", "Activity", new { id = list.Id }, null) |
-                    @Html.ActionLink("Radera", "Delete", "Activity", new { id = list.Id })
-                </td>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("search") <input type = "submit" name = "submit" value = "Sök efter beskrivning" />
+    }
 
-            </tr>
+        <table id="activities">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Beskrivning</th>
+                    <th>Antal deltagande</th>
+                    <th>Datum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var list in Model)
+                {
+                    <tr>
+                        <td>@list.CategoryName</td>
+                        <td>@list.Description</td>
+                        <td>@list.Participants</td>
+                        <td>@list.Date</td>
+                        <td>
+                            @Html.ActionLink("Redigera", "Update", "Activity", new { id = list.Id }, null) |
+                            @Html.ActionLink("Radera", "Delete", "Activity", new { id = list.Id })
+                        </td>
 
-            }
-        </tbody>
-    </table>
-    <div class="container" style="text-align: center">
-        <a asp-controller="SuggestedActivity" asp-action="Index">Skapa en ny aktivitet</a>
+                    </tr>
 
-    </div>
+                }
+            </tbody>
+        </table>
+        <div class="container" style="text-align: center">
+            <a asp-controller="SuggestedActivity" asp-action="Index">Skapa en ny aktivitet</a>
+
+        </div>
 
     </div>
 
