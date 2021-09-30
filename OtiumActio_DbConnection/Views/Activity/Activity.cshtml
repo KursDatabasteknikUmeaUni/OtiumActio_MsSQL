@@ -18,7 +18,7 @@
                 <td>@list.Participants</td>
                 <td>@list.Date</td>
                 <td>
-                    @Html.ActionLink("Redigera", "Delete", "Activity", new { id = list.Id }) |
+                    @Html.ActionLink("Redigera", "Update", "Activity", new { id = list.Id }, null) |
                     @Html.ActionLink("Radera", "Delete", "Activity", new { id = list.Id })
                 </td>
 

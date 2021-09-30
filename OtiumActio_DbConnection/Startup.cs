@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using OtiumActio.Data;
 using OtiumActio.DAL;
-
+using OtiumActio.Interfaces;
+using OtiumActio.Controllers;
 
 namespace OtiumActio
 {
@@ -35,6 +36,8 @@ namespace OtiumActio
                 options.Cookie.IsEssential = true;
             });
             services.AddScoped<IDataAccessLayer, DataAccessLayer>();
+            services.AddScoped<IEditActivityController, EditActivityController>();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

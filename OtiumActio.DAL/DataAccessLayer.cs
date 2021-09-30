@@ -137,6 +137,61 @@ namespace OtiumActio.DAL
             }
             }
         }
+        public string UpdateActivity(Activity activity) //int id, int category, string description, int participant, DateTime date
+        {
+            string connectionString = GetSrting();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("dbo.UpdateActivity", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@activityId", activity.Id);
+                    //cmd.Parameters.AddWithValue("@category", activity.Category);
+                    cmd.Parameters.AddWithValue("@description", activity.Description);
+                    cmd.Parameters.AddWithValue("@participants", activity.Participants);
+                    cmd.Parameters.AddWithValue("@date", activity.Date);
+                    cmd.ExecuteNonQuery();
+                    return null; // success   
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message; // return error message  
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+        //public Activity GetSingleActivity(int id)
+        //{
+        //    string connectionString = GetSrting();
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            con.Open();
+        //            SqlCommand cmd = new SqlCommand("GetActivityDetails", con);
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.AddWithValue("@id", id);
+        //            cmd.ExecuteNonQuery();
+        //            return null; // success   
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return ex.Message; // return error message  
+        //        }
+        //        finally
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+
+            
+        //}
+
         public static string GetSrting() => ConnectionStringSetting.GetConnectionString();
     }
 }

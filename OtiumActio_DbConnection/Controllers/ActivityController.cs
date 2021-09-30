@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using OtiumActio.Helpers;
 using OtiumActio.DAL;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OtiumActio.Interfaces;
 
 namespace OtiumActio.Controllers
 {
     public class ActivityController : Controller
     {
-        //private static List<Activity> ListOfAllActivities = new List<Activity>();
+        private IEditActivityController _service;
+        public ActivityController(IEditActivityController service)
+        {
+            _service = service;
+        }
         public IActionResult Index()
         {
             DataAccessLayer adl = new DataAccessLayer();
@@ -29,6 +35,11 @@ namespace OtiumActio.Controllers
                 ViewData["Error"] = "Oops! Försök igen senare!";
             }
             return View("_successMessage");
+        }
+        public void Update(Activity activity)
+        {
+            ///Activity/Update/30
+            _service.Edit(activity.Id);
         }
     }
 }
