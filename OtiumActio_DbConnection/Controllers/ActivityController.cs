@@ -6,6 +6,7 @@ using OtiumActio.DAL;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OtiumActio.Interfaces;
+using System;
 
 namespace OtiumActio.Controllers
 {
@@ -16,7 +17,7 @@ namespace OtiumActio.Controllers
         {
             _service = service;
         }
-        public IActionResult Index(string search)
+        public IActionResult Index(string search, string sort, string startDate, string endDate)
         {
             DataAccessLayer adl = new DataAccessLayer();
             var allActivities = adl.Activities.ToList();
@@ -24,8 +25,30 @@ namespace OtiumActio.Controllers
             if (!string.IsNullOrEmpty(search))
             {
                 return View("Activity", allActivities.Where(d=>d.Description.Contains(search)));
-
             }
+            if (!string.IsNullOrEmpty(sort))
+            {
+                return View("Activity", allActivities.OrderBy(c => c.CategoryName));
+            }
+            if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+            {
+                DateTime sDate = Convert.ToDateTime(startDate);
+                DateTime eDate = Convert.ToDateTime(endDate);
+                return View("Activity", allActivities.Where(date => date.Date <= eDate && date.Date >= sDate).ToList());
+            }
+
+            //ViewBag.SortByName = string.IsNullOrEmpty(sort) ? "desc_categories" : sort;
+            //switch (sort)
+            //{
+
+            //    case "desc_categories":
+            //        allActivities = allActivities.OrderBy(x => x.CategoryName).ToList();
+            //        break;
+            //    default:
+            //        allActivities.ToList();
+            //        break;
+
+            //}
             return View("Activity", allActivities);
         }
         public IActionResult Delete(Activity activity)
