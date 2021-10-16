@@ -36,19 +36,6 @@ namespace OtiumActio.Controllers
                 DateTime eDate = Convert.ToDateTime(endDate);
                 return View("Activity", allActivities.Where(date => date.Date <= eDate && date.Date >= sDate).ToList());
             }
-
-            //ViewBag.SortByName = string.IsNullOrEmpty(sort) ? "desc_categories" : sort;
-            //switch (sort)
-            //{
-
-            //    case "desc_categories":
-            //        allActivities = allActivities.OrderBy(x => x.CategoryName).ToList();
-            //        break;
-            //    default:
-            //        allActivities.ToList();
-            //        break;
-
-            //}
             return View("Activity", allActivities);
         }
         public IActionResult Delete(Activity activity)

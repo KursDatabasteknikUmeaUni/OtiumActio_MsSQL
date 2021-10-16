@@ -14,9 +14,9 @@ namespace OtiumActio.Models
 
         [Required(AllowEmptyStrings= false, ErrorMessage = "Beskriv kort aktiviteten, max 50 karaktär")]
         public string Description { get; set; }
-        [Range(1, 50, ErrorMessage = "På grund av rådande restriktioner får antal deltagande inte överskrida 50")]
+        [Range(1, 50, ErrorMessage = "Ange ett tal mellan 1 och 50")]
         public long Participants { get; set; }
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss zzz}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
     }
 }

@@ -33,6 +33,8 @@ namespace OtiumActio.Controllers
         public IActionResult AddNewActivity(ActivityViewModel model)
         {
             DataAccessLayer adl = new DataAccessLayer();
+            if (ModelState.IsValid)
+            {
             var activity = new Activity
             {
                 //Id = 6,
@@ -44,6 +46,8 @@ namespace OtiumActio.Controllers
             };
             adl.AddActivity(activity);
             ModelState.Clear();
+            }
+
             var allCategories = adl.Categories.ToList();
             List<SelectListItem> categories = new List<SelectListItem>();
             foreach (var category in allCategories)

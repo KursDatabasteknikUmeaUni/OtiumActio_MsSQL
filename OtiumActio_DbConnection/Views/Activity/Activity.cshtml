@@ -2,17 +2,20 @@
 <div>
     @using (Html.BeginForm())
     {
-        <div style="max-width: 300px;">
-            @Html.TextBox("search") <input type="submit" name="submit" value="Sök efter beskrivning" />
+    <div class="row" >
+        <div class="col" style="max-width: 300px;">
+            @Html.TextBox("search") <input type="submit" name="submit" value="Sök efter beskrivning" class="col" />
         </div>
+    </div>
     }
     @using (Html.BeginForm())
     {
+
         <div style="max-width: 300px;">
             <p>Sortera efter datum</p>
             Från <input type="text" id="startDate" name="startDate" class="startDate form-control" />
             Till <input type="text" id="endDate" name="endDate" class="endDate form-control" />
-            <input type="submit" value="Submit" class="btn btn-primary" />
+            <input type="submit" value="Sök" class="btn btn-dark" />
         </div>
     }
 
@@ -50,7 +53,7 @@
                         <td>@list.CategoryName</td>
                         <td>@list.Description</td>
                         <td>@list.Participants</td>
-                        <td>@list.Date</td>
+                        <td>@list.Date.ToShortDateString()</td>
                         <td>
                             @Html.ActionLink("Redigera", "Update", "Activity", new { id = list.Id }, null) |
                             @Html.ActionLink("Radera", "Delete", "Activity", new { id = list.Id })
